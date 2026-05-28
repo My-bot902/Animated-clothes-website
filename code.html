@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Luxe Fabrics - Quality Unstitched Clothing</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Playfair+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f5f3f3",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "surface-bright": "#fbf9f9",
+                        "surface-container": "#efeded",
+                        "on-background": "#1b1c1c",
+                        "tertiary-fixed-dim": "#c9c6c4",
+                        "primary-fixed": "#e5e2e1",
+                        "on-surface": "#1b1c1c",
+                        "secondary-fixed": "#f2e0c8",
+                        "surface-variant": "#e3e2e2",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#5f5e5e",
+                        "surface": "#fbf9f9",
+                        "outline": "#747878",
+                        "primary": "#0a0a0a",
+                        "background": "#fbf9f9",
+                        "secondary": "#695d4a",
+                        "secondary-container": "#f2e0c8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "80px",
+                        "base": "8px",
+                        "container-max": "1440px",
+                        "margin-mobile": "20px"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+
+<!-- 🛠️ FIXED LOADER: Auto-hides after 1 second so your website never gets stuck -->
+<div id="loader" class="fixed inset-0 bg-black z-[100] flex flex-col items-center justify-center gap-4 transition-opacity duration-500 text-white">
+    <div class="w-12 h-12 border-4 border-[#f2e0c8]/20 border-t-[#f2e0c8] rounded-full animate-spin"></div>
+    <div class="text-xs tracking-widest text-[#f2e0c8] uppercase">Loading Luxe Fabrics</div>
+    <div id="loader-progress" class="text-xs text-white/60">Loading Store...</div>
+</div>
+
+<script>
+    // Yeh script loader ko 1 second baad automatic band kar degi taake customer bina hichkichahat website dekh sake
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            if(loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500);
+            }
+        }, 1000); 
+    });
+</script>
+
+<!-- 📱 FULLY MOBILE RESPONSIVE NAVBAR & HEADER -->
+<header class="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md fixed top-0 w-full z-50 h-16 border-b border-zinc-200/50 transition-all duration-300" id="navbar">
+    <div class="flex justify-between items-center px-4 md:px-20 max-w-[1440px] mx-auto h-full">
+        
+        <!-- Mobile Menu Icon (Aam customer ke liye easy open) -->
+        <button aria-label="Menu" class="md:hidden text-primary p-2 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        
+        <!-- Simple Clear Brand Logo -->
+        <a class="font-serif text-xl md:text-2xl font-bold text-primary tracking-tight" href="#">LUXE FABRICS</a>
+        
+        <!-- Navigation Links (PC Screen Grid - Clean and Elegant) -->
+        <nav class="hidden md:flex gap-8">
+            <a class="text-zinc-600 hover:text-black font-medium tracking-wide text-sm uppercase transition-colors" href="#">All Fabrics</a>
+            <a class="text-zinc-600 hover:text-black font-medium tracking-wide text-sm uppercase transition-colors" href="#">Winter Collection</a>
+            <a class="text-zinc-600 hover:text-black font-medium tracking-wide text-sm uppercase transition-colors" href="#">Cotton</a>
+            <a class="text-zinc-600 hover:text-black font-medium tracking-wide text-sm uppercase transition-colors" href="#">About Us</a>
+        </nav>
+        
+        <!-- Shopping Cart Icon (Uunmissable for easy checkout) -->
+        <div class="flex items-center gap-4 text-primary">
+            <button aria-label="Search" class="hover:opacity-70 p-2">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+            <button aria-label="Cart" class="hover:opacity-70 p-2 relative bg-secondary-container rounded-full flex items-center justify-center">
+                <span class="material-symbols-outlined text-zinc-900">shopping_bag</span>
+                <span class="absolute -top-1 -right-1 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu Drawer (Phone par click karne se khulega) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-zinc-200 px-6 py-4 flex flex-col gap-4 shadow-lg">
+        <a class="text-zinc-800 font-medium py-1 border-b border-zinc-100" href="#">All Fabrics</a>
+        <a class="text-zinc-800 font-medium py-1 border-b border-zinc-100" href="#">Winter Collection</a>
+        <a class="text-zinc-800 font-medium py-1 border-b border-zinc-100" href="#">Cotton</a>
+        <a class="text-zinc-800 font-medium py-1" href="#">About Us</a>
+    </div>
+</header>
+
+<!-- Hero Section (Scroll Interactive Image Sequence) -->
+<section id="hero-scroll-container" class="relative h-[180vh] bg-black">
+    <!-- Sticky Canvas Wrapper -->
+    <div class="sticky top-0 h-screen w-full overflow-hidden">
+        <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover"></canvas>
+        
+        <!-- Dark tint overlay for readability -->
+        <div class="absolute inset-0 bg-black/45 pointer-events-none"></div>
+        
+        <!-- Cinematic Floating Text Overlays -->
+        <div class="absolute inset-0 flex items-center justify-center text-center p-6 z-10 pointer-events-none">
+            <!-- Text 1 -->
+            <div id="hero-text-1" class="absolute flex flex-col items-center gap-4 transition-all duration-75 max-w-2xl text-white">
+                <span class="font-label-caps text-label-caps uppercase tracking-widest text-[#f2e0c8] font-semibold">Luxe Fabrics</span>
+                <h1 class="font-display-lg text-4xl md:text-6xl text-white leading-tight font-semibold">Quality Unstitched Fabrics</h1>
+                <p class="font-body-lg text-white/80 max-w-md">Comfortable, durable, and affordable fabrics for your everyday wear.</p>
+            </div>
+            
+            <!-- Text 2 -->
+            <div id="hero-text-2" class="absolute flex flex-col items-center gap-4 transition-all duration-75 max-w-2xl text-white opacity-0">
+                <span class="font-label-caps text-label-caps uppercase tracking-widest text-[#f2e0c8] font-semibold">Best Value</span>
+                <h2 class="font-display-lg text-3xl md:text-5xl text-white leading-tight font-semibold">Reasonable Rates</h2>
+                <p class="font-body-lg text-white/80 max-w-md">We offer standard quality cotton, linen, and wash-and-wear at pocket-friendly prices.</p>
+            </div>
+            
+            <!-- Text 3 -->
+            <div id="hero-text-3" class="absolute flex flex-col items-center gap-4 transition-all duration-75 max-w-2xl text-white opacity-0">
+                <span class="font-label-caps text-label-caps uppercase tracking-widest text-[#f2e0c8] font-semibold">Easy Ordering</span>
+                <h2 class="font-display-lg text-3xl md:text-5xl text-white leading-tight font-semibold">Simple Cash on Delivery</h2>
+                <button onclick="document.getElementById('signature-bundles').scrollIntoView({behavior: 'smooth'})" class="mt-4 px-8 py-4 bg-white text-primary font-label-caps text-label-caps uppercase tracking-widest hover:bg-[#f2e0c8] hover:text-black transition-colors duration-300 shadow-lg pointer-events-auto">View Products</button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Category Section -->
+<section class="py-16 md:py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto border-t border-outline-variant/20">
+<div class="flex flex-col items-center text-center mb-16">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">Curated Collections</h2>
+<div class="w-12 h-px bg-primary"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Category 1 -->
+<a class="group relative aspect-[3/4] overflow-hidden bg-surface-container flex items-center justify-center" href="#">
+<img alt="Luxury Cotton" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="Close up shot of fine, crisp white cotton fabric with a subtle woven texture. Soft, diffused lighting highlighting the natural folds and breathability of the material. Minimalist, premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqexop-dCIpvtTyiW89Pda41bQDdDWAWwIKarcxc_TiPLG2dHxfOK9JoBGqf7YF0wIkLS99ibAz-kqfr80FrGzThN_HPT4L0ozp8HvES--suEt4VfxIpCUnnDd_jbn5TNjMwdsP4meSM8viakYHNJnsMxcxasLb37s3oRCbZVuC7vJ6yPWp9VRP6j6ACVYjKML8ogFHge57lI8bcY0y-D5BDw5hsircYqXVYhcyJJKuE_KGEDMotws23CxgQTCajvv5VJYfDhkCa4X"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+<div class="relative z-10 text-center p-6 w-full mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-primary mb-2">Daily Cotton</h3>
+<span class="font-label-caps text-label-caps text-on-primary/80 uppercase tracking-widest group-hover:underline underline-offset-4 decoration-1">Explore</span>
+</div>
+</a>
+<!-- Category 2 -->
+<a class="group relative aspect-[3/4] overflow-hidden bg-surface-container flex items-center justify-center" href="#">
+<img alt="Festive Wash &amp; Wear" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="Elegant, lightly textured blend fabric in a soft beige tone, draped smoothly over a neutral surface. High-key lighting, emphasizing the smooth finish suitable for festive wear. Modern luxury styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXUUVcNrajOPDSOOqJtVu6wxiUpTy_cUX4VHLg525Shus-Zp6e91Q2H5vYFNyLnhqFdf9wLtyN8YoAfMqLJnFJdzgpTx07iIQJUOaR2KkWuZK0GN_qddAzyjgJz3_cI-DBIbnY2aklhUV14uH8pOIDlpsvv38jVQLK55vK-AXRA6xB2Uz3Hx5TLGRyy7Zh3mEM5c6RLXxkWTF2V5oYJKLg3Mv5PzHcU91gDCaSTwgbN_Z3N0UqwUr-86ZcV5e89E0EjGFOUF8A5S_a"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+<div class="relative z-10 text-center p-6 w-full mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-primary mb-2">Festive Wear</h3>
+<span class="font-label-caps text-label-caps text-on-primary/80 uppercase tracking-widest group-hover:underline underline-offset-4 decoration-1">Explore</span>
+</div>
+</a>
+<!-- Category 3 -->
+<a class="group relative aspect-[3/4] overflow-hidden bg-surface-container flex items-center justify-center" href="#">
+<img alt="Daily Plain" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="A smooth, dark navy blue plain fabric, neatly folded. The lighting is slightly dramatic, casting soft shadows that highlight the flawless surface of the material. Minimalist and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD6FVljl0DPpxth2Sd-ukjSbej3ulDF5PHE7R2GXDkJARIzZGxCZpMPFDdpWUgIXvUHDdEBQHaZ0nzxObQmjgLRj_ILSQt8aXBkzljPjNaLbkyi_4QaEoYmf6WgvFQkzgg0M3Pso8FC09cG0EUzW5gDC5aGfNjhZnVawtpajdtN5bAaRsDV2SZeMGsByxSYcmiyugFYlHJ1frXqh_K-a_PveP8SthwClafc1laW52vLndqj0Kqpp7TanmbplQBuPl_x7XZL8A-gWj0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+<div class="relative z-10 text-center p-6 w-full mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-primary mb-2">Simple Plain</h3>
+<span class="font-label-caps text-label-caps text-on-primary/80 uppercase tracking-widest group-hover:underline underline-offset-4 decoration-1">Explore</span>
+</div>
+</a>
+</div>
+</section>
+<!-- Product Showcase -->
+<section class="py-16 md:py-24 bg-surface-container-low" id="signature-bundles">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">Popular Fabrics</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Quality fabrics at standard rates. Quick ordering via WhatsApp.</p>
+</div>
+<a class="hidden md:inline-block font-label-caps text-label-caps text-primary uppercase tracking-widest border-b border-primary pb-1 hover:text-on-surface-variant hover:border-on-surface-variant transition-colors" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+<!-- Product Card 1 -->
+<div class="group relative flex flex-col bg-surface border border-outline-variant/30 hover:border-primary transition-colors duration-300">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container p-6">
+<img alt="Charcoal Grey Bundle" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" data-alt="A neatly folded bundle of premium dark charcoal grey fabric resting on a pristine off-white surface. The lighting is soft and studio-quality, emphasizing the luxurious texture and weave of the material. Minimalist setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYLExfoli88yGVuS8KLUn5cFWAIaR0KQYivm0RHr_77lvZnHe-MS7GNJpeAgzL13Bt2KVxNQHiNqXYaHgNNrmqlGeUfiedZwJsC7_cG_BAD8vT6mwiz_BniN379v4iJntaej1la9qDJZo4Q0d4MVUkbIVyCjbE7TGfOtMiUObejKJqFzhOPJIKPUiHQ3-1WUMgFKcq9ZS3cXfAezQvw_1wUzHtZzx9g8SX97kPdHDUij7UzrhfSsMaySamP_PJyH04pW6mIOUQYr-w"/>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
+<!-- WhatsApp Order Overlay -->
+<div class="absolute bottom-0 left-0 w-full p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+<a href="https://wa.me/1234567890?text=I%20want%20to%20order%20the%20Daily%20Wash%20%26%20Wear%20fabric" target="_blank" class="w-full py-3 bg-[#25D366] text-white font-label-caps text-label-caps uppercase tracking-widest hover:bg-[#128C7E] transition-colors flex items-center justify-center gap-2 pointer-events-auto">
+    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.398 1.451 5.353 1.452 5.4 0 9.793-4.39 9.797-9.789.002-2.614-1.012-5.071-2.859-6.919C17.042 2.05 14.584 1.03 11.983 1.03c-5.399 0-9.794 4.39-9.798 9.789-.001 1.83.479 3.618 1.391 5.2l-.926 3.38 3.474-.912zm13.411-7.235c-.329-.165-1.95-.963-2.253-1.074-.303-.11-.524-.165-.744.165-.22.33-.852 1.074-1.044 1.294-.192.22-.384.247-.713.083-.329-.165-1.389-.512-2.647-1.633-.978-.872-1.637-1.95-1.829-2.28-.192-.33-.02-.508.145-.671.148-.147.329-.385.494-.578.165-.192.22-.33.329-.55.11-.22.055-.413-.028-.578-.083-.165-.744-1.79-.102-2.226-.28-.356-.569-.303-.744-.303-.179-.001-.384-.002-.589-.002-.206 0-.54.077-.822.385-.282.308-1.078 1.054-1.078 2.57s1.102 2.983 1.257 3.19c.155.207 2.17 3.313 5.258 4.646.734.317 1.308.507 1.753.648.738.234 1.41.201 1.942.122.593-.088 1.95-.798 2.227-1.57.278-.772.278-1.433.195-1.57-.083-.138-.303-.22-.633-.385z"/></svg>
+    Order on WhatsApp
+</a>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-2 relative bg-surface z-10">
+<div class="flex justify-between items-start">
+<h3 class="font-body-lg text-body-lg text-primary font-medium">Daily Wash & Wear</h3>
+<span class="font-price-tag text-price-tag text-primary">Rs. 1,800</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Easy Iron & Durable</p>
+<!-- Swatches -->
+<div class="flex gap-2 mt-4 items-center justify-end">
+<div class="w-4 h-4 rounded-full bg-slate-800 border border-outline-variant cursor-pointer ring-1 ring-offset-2 ring-primary"></div>
+<div class="w-4 h-4 rounded-full bg-stone-700 border border-outline-variant cursor-pointer"></div>
+<div class="w-4 h-4 rounded-full bg-[#3d4035] border border-outline-variant cursor-pointer"></div>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group relative flex flex-col bg-surface border border-outline-variant/30 hover:border-primary transition-colors duration-300">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container p-6">
+<img alt="White Cotton Bundle" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" data-alt="A neatly folded bundle of pure white Egyptian cotton fabric resting on a pristine off-white surface. The lighting is high-key and bright, emphasizing the crispness and purity of the material. Minimalist setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz_pecSo-r66Ha_Rxocp7bTti0E3WG_6fczg0i-VGkiTRr871d7KFrt-sEFDxrqFgPF7XvMsm31ae-RJW7h-dOylqhfTfHE9UgtiVfKfRuihypgRRXR9T9eJ_z2LbZHBdhmpfLFIeeIh1hfET4HeB_-uLjNikZRlmGxk-CFUIInv7j0g5uwQHryV2GRWgC1rcorJG_9hG3fmyeis558GNr63P3-xetG0MJrw_cKdL1O62f-lAbkAZ94gJNERW3b-gu2vig8URt7NdC"/>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
+<!-- WhatsApp Order Overlay -->
+<div class="absolute bottom-0 left-0 w-full p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+<a href="https://wa.me/1234567890?text=I%20want%20to%20order%20the%20Soft%20Pure%20Cotton%20fabric" target="_blank" class="w-full py-3 bg-[#25D366] text-white font-label-caps text-label-caps uppercase tracking-widest hover:bg-[#128C7E] transition-colors flex items-center justify-center gap-2 pointer-events-auto">
+    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.398 1.451 5.353 1.452 5.4 0 9.793-4.39 9.797-9.789.002-2.614-1.012-5.071-2.859-6.919C17.042 2.05 14.584 1.03 11.983 1.03c-5.399 0-9.794 4.39-9.798 9.789-.001 1.83.479 3.618 1.391 5.2l-.926 3.38 3.474-.912zm13.411-7.235c-.329-.165-1.95-.963-2.253-1.074-.303-.11-.524-.165-.744.165-.22.33-.852 1.074-1.044 1.294-.192.22-.384.247-.713.083-.329-.165-1.389-.512-2.647-1.633-.978-.872-1.637-1.95-1.829-2.28-.192-.33-.02-.508.145-.671.148-.147.329-.385.494-.578.165-.192.22-.33.329-.55.11-.22.055-.413-.028-.578-.083-.165-.744-1.79-.102-2.226-.28-.356-.569-.303-.744-.303-.179-.001-.384-.002-.589-.002-.206 0-.54.077-.822.385-.282.308-1.078 1.054-1.078 2.57s1.102 2.983 1.257 3.19c.155.207 2.17 3.313 5.258 4.646.734.317 1.308.507 1.753.648.738.234 1.41.201 1.942.122.593-.088 1.95-.798 2.227-1.57.278-.772.278-1.433.195-1.57-.083-.138-.303-.22-.633-.385z"/></svg>
+    Order on WhatsApp
+</a>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-2 relative bg-surface z-10">
+<div class="flex justify-between items-start">
+<h3 class="font-body-lg text-body-lg text-primary font-medium">Soft Pure Cotton</h3>
+<span class="font-price-tag text-price-tag text-primary">Rs. 2,400</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">100% Lightweight Cotton</p>
+<!-- Swatches -->
+<div class="flex gap-2 mt-4 items-center justify-end">
+<div class="w-4 h-4 rounded-full bg-white border border-outline-variant cursor-pointer ring-1 ring-offset-2 ring-primary"></div>
+<div class="w-4 h-4 rounded-full bg-[#f4e4d4] border border-outline-variant cursor-pointer"></div>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative flex flex-col bg-surface border border-outline-variant/30 hover:border-primary transition-colors duration-300">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container p-6">
+<img alt="Brown Linen Bundle" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" data-alt="A neatly folded bundle of rich brown textured linen-blend fabric resting on a pristine off-white surface. The lighting is soft and studio-quality, emphasizing the luxurious texture and weave of the material. Minimalist setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv3KlH-hIf_x8jPy3nDhKo6Gv5tsq7oVyz6e8G32hQW9PcIL8zigcpS816OlvGAqsFpKOcCcsOLkMG5FV48AtPHc2X6freoznI1wdSe2PpFeESY5yvJJuWO3SqWxeweWrF6iaAwUfo9fno-QtzDGZ4pILyDl4-oMSMRsTREH0Y0h0rZ-WwZJo5AABDVRl8CmqNksYH1ggjoZ7FJSCCE01WiTdpzJnt_KWcf0ZOYdXQYIlKQ34NAoEB6l6k9OGEamif1X4N1DE_F4tx"/>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
+<!-- WhatsApp Order Overlay -->
+<div class="absolute bottom-0 left-0 w-full p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+<a href="https://wa.me/1234567890?text=I%20want%20to%20order%20the%20Summer%20Linen%20Blend%20fabric" target="_blank" class="w-full py-3 bg-[#25D366] text-white font-label-caps text-label-caps uppercase tracking-widest hover:bg-[#128C7E] transition-colors flex items-center justify-center gap-2 pointer-events-auto">
+    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.398 1.451 5.353 1.452 5.4 0 9.793-4.39 9.797-9.789.002-2.614-1.012-5.071-2.859-6.919C17.042 2.05 14.584 1.03 11.983 1.03c-5.399 0-9.794 4.39-9.798 9.789-.001 1.83.479 3.618 1.391 5.2l-.926 3.38 3.474-.912zm13.411-7.235c-.329-.165-1.95-.963-2.253-1.074-.303-.11-.524-.165-.744.165-.22.33-.852 1.074-1.044 1.294-.192.22-.384.247-.713.083-.329-.165-1.389-.512-2.647-1.633-.978-.872-1.637-1.95-1.829-2.28-.192-.33-.02-.508.145-.671.148-.147.329-.385.494-.578.165-.192.22-.33.329-.55.11-.22.055-.413-.028-.578-.083-.165-.744-1.79-.102-2.226-.28-.356-.569-.303-.744-.303-.179-.001-.384-.002-.589-.002-.206 0-.54.077-.822.385-.282.308-1.078 1.054-1.078 2.57s1.102 2.983 1.257 3.19c.155.207 2.17 3.313 5.258 4.646.734.317 1.308.507 1.753.648.738.234 1.41.201 1.942.122.593-.088 1.95-.798 2.227-1.57.278-.772.278-1.433.195-1.57-.083-.138-.303-.22-.633-.385z"/></svg>
+    Order on WhatsApp
+</a>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-2 relative bg-surface z-10">
+<div class="flex justify-between items-start">
+<h3 class="font-body-lg text-body-lg text-primary font-medium">Summer Linen Blend</h3>
+<span class="font-price-tag text-price-tag text-primary">Rs. 2,200</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Cool & Breathable Wear</p>
+<!-- Swatches -->
+<div class="flex gap-2 mt-4 items-center justify-end">
+<div class="w-4 h-4 rounded-full bg-[#8b7355] border border-outline-variant cursor-pointer ring-1 ring-offset-2 ring-primary"></div>
+<div class="w-4 h-4 rounded-full bg-[#d2b48c] border border-outline-variant cursor-pointer"></div>
+<div class="w-4 h-4 rounded-full bg-[#556b2f] border border-outline-variant cursor-pointer"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 text-center md:hidden">
+<a class="inline-block px-8 py-4 border border-primary text-primary font-label-caps text-label-caps uppercase tracking-widest w-full text-center" href="#">View All</a>
+</div>
+</div>
+</section>
+</div>
+<div class="mt-12 text-center md:hidden">
+<a class="inline-block px-8 py-4 border border-primary text-primary font-label-caps text-label-caps uppercase tracking-widest w-full text-center" href="#">View All</a>
+</div>
+</div>
+</section>
+<!-- 3-Step Guide -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto border-t border-b border-outline-variant/20 bg-surface">
+<div class="flex flex-col items-center text-center mb-16">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">Seamless Experience</h2>
+<div class="w-12 h-px bg-primary"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full border border-primary flex items-center justify-center mb-6 bg-surface-container-lowest group-hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-weight: 200;">local_mall</span>
+</div>
+<h3 class="font-label-caps text-label-caps text-primary uppercase tracking-widest mb-3">1. Choose Fabric</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Browse our curated collection of premium unstitched materials and select your desired length and color.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full border border-primary flex items-center justify-center mb-6 bg-surface-container-lowest group-hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-weight: 200;">shopping_bag</span>
+</div>
+<h3 class="font-label-caps text-label-caps text-primary uppercase tracking-widest mb-3">2. Add to Cart / WhatsApp</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Seamlessly add items to your cart or connect with us directly via WhatsApp for personalized assistance.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full border border-primary flex items-center justify-center mb-6 bg-surface-container-lowest group-hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-weight: 200;">local_shipping</span>
+</div>
+<h3 class="font-label-caps text-label-caps text-primary uppercase tracking-widest mb-3">3. Pay on Delivery</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Enjoy peace of mind with our secure cash-on-delivery service. Inspect your fabric before you pay.</p>
+</div>
+</div>
+</section>
+<!-- Customer Reviews -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto bg-surface-container-low">
+<div class="flex flex-col items-center text-center mb-16">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">Customer Reviews</h2>
+<div class="w-12 h-px bg-primary"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+<!-- Review 1 -->
+<div class="p-8 border border-outline-variant/30 bg-surface flex flex-col h-full">
+<div class="flex text-primary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-body-lg text-primary italic mb-8 flex-grow">"Very good wash and wear fabric for daily use. Color doesn't fade after wash and the price is very fair. Ordered on WhatsApp and got it delivered quickly."</p>
+<div>
+<p class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Ahmed R.</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Verified Buyer</p>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="p-8 border border-outline-variant/30 bg-surface flex flex-col h-full">
+<div class="flex text-primary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-body-lg text-primary italic mb-8 flex-grow">"Excellent pure cotton fabric at a reasonable price. Durable quality for regular wear. Very polite support on WhatsApp."</p>
+<div>
+<p class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Omar T.</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Verified Buyer</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest w-full py-16 border-t border-outline-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto gap-base font-body-md text-body-md text-primary dark:text-on-surface">
+<a class="font-headline-md text-headline-md text-primary dark:text-on-surface tracking-tight mb-8 md:mb-0" href="#">LUXE FABRICS</a>
+<div class="flex flex-col md:flex-row items-center gap-6 md:gap-8 mb-8 md:mb-0">
+<a class="text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-on-surface-variant underline decoration-1 underline-offset-4 transition-colors" href="#">Contact Us</a>
+<a class="text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-on-surface-variant underline decoration-1 underline-offset-4 transition-colors" href="#">WhatsApp Support</a>
+<a class="text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-on-surface-variant underline decoration-1 underline-offset-4 transition-colors" href="#">Shipping Policy</a>
+<a class="text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-on-surface-variant underline decoration-1 underline-offset-4 transition-colors" href="#">Terms of Service</a>
+</div>
+<p class="text-on-surface-variant dark:text-outline text-sm">© 2024 Luxe Fabric. All Rights Reserved.</p>
+</div>
+</footer>
+<script>
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    const scrollContainer = document.getElementById('hero-scroll-container');
+    const text1 = document.getElementById('hero-text-1');
+    const text2 = document.getElementById('hero-text-2');
+    const text3 = document.getElementById('hero-text-3');
+    const navbar = document.getElementById('navbar');
+
+    const totalFrames = 240;
+    const images = [];
+    let loadedCount = 0;
+    let imagesPreloaded = false;
+
+    // Track scroll fractions
+    let currentScrollFraction = 0;
+    let targetScrollFraction = 0;
+    // Set damping to 0.15 for a faster, snappier frame animation feel
+    const damping = 0.15; 
+
+    // Preload all 240 frames
+    function preloadImages() {
+        for (let i = 1; i <= totalFrames; i++) {
+            const img = new Image();
+            const frameNum = String(i).padStart(3, '0');
+            img.src = `hero-frames/ezgif-frame-${frameNum}.jpg`;
+            img.onload = () => {
+                loadedCount++;
+                if (loadedCount === totalFrames) {
+                    imagesPreloaded = true;
+                    // Initial draw once all loaded
+                    drawFrame(0);
+                }
+            };
+            img.onerror = () => {
+                // Fallback in case of individual load failure to prevent lock
+                loadedCount++;
+                if (loadedCount === totalFrames) {
+                    imagesPreloaded = true;
+                    drawFrame(0);
+                }
+            };
+            images.push(img);
+        }
+    }
+
+    // Draw the image frame to the canvas mimicking "object-fit: cover"
+    function drawFrame(index) {
+        const frameIndex = Math.floor(index);
+        const img = images[frameIndex];
+        if (!img || !img.complete) return;
+
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const imgRatio = img.width / img.height;
+        const canvasRatio = canvas.width / canvas.height;
+
+        let drawWidth, drawHeight, drawX, drawY;
+
+        if (canvasRatio > imgRatio) {
+            drawWidth = canvas.width;
+            drawHeight = canvas.width / imgRatio;
+            drawX = 0;
+            drawY = (canvas.height - drawHeight) / 2;
+        } else {
+            drawWidth = canvas.height * imgRatio;
+            drawHeight = canvas.height;
+            drawX = (canvas.width - drawWidth) / 2;
+            drawY = 0;
+        }
+
+        ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+    }
+
+    // Set canvas dimensions to fit the viewport exactly
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        if (imagesPreloaded) {
+            drawFrame(currentScrollFraction * (totalFrames - 1));
+        }
+    }
+
+    // Track page scroll to compute the target scroll fraction
+    window.addEventListener('scroll', () => {
+        updateNavbar();
+        
+        const rect = scrollContainer.getBoundingClientRect();
+        const scrollHeight = rect.height - window.innerHeight;
+        const scrollCurrent = -rect.top;
+        
+        let fraction = scrollCurrent / scrollHeight;
+        targetScrollFraction = Math.max(0, Math.min(1, fraction));
+    });
+
+    // Handle initial state on load and resize
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        const rect = scrollContainer.getBoundingClientRect();
+        const scrollHeight = rect.height - window.innerHeight;
+        const scrollCurrent = -rect.top;
+        let fraction = scrollCurrent / scrollHeight;
+        targetScrollFraction = Math.max(0, Math.min(1, fraction));
+    });
+
+    // Make navbar transparent with white text when at the top over the dark hero section
+    function updateNavbar() {
+        const navLinks = navbar.querySelectorAll('a, button, span');
+        
+        if (window.scrollY < 50) {
+            navbar.classList.remove('bg-surface/80', 'backdrop-blur-md', 'border-b', 'shadow-sm');
+            navbar.classList.add('bg-transparent', 'border-transparent');
+            navLinks.forEach(el => {
+                if (el.tagName === 'A' && el.classList.contains('text-on-surface-variant')) {
+                    el.style.color = 'rgba(255, 255, 255, 0.7)';
+                } else {
+                    el.style.color = '#ffffff';
+                }
+            });
+        } else {
+            navbar.classList.add('bg-surface/80', 'backdrop-blur-md', 'border-b');
+            navbar.classList.remove('bg-transparent', 'border-transparent');
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-sm');
+            }
+            navLinks.forEach(el => {
+                el.style.color = ''; // Reset to tailwind classes
+            });
+        }
+    }
+
+    // Animate text overlays smoothly
+    function updateTextOverlays(fraction) {
+        // Text 1: active 0% to 30%, fades out from 20% to 30%
+        if (fraction <= 0.2) {
+            text1.style.opacity = 1;
+            text1.style.transform = 'translateY(0)';
+            text1.style.pointerEvents = 'auto';
+        } else if (fraction > 0.2 && fraction <= 0.3) {
+            const factor = (0.3 - fraction) / 0.1;
+            text1.style.opacity = factor;
+            text1.style.transform = `translateY(${(1 - factor) * -25}px)`;
+            text1.style.pointerEvents = 'none';
+        } else {
+            text1.style.opacity = 0;
+            text1.style.pointerEvents = 'none';
+        }
+        
+        // Text 2: active 30% to 65%, fades in from 30% to 40%, fades out from 55% to 65%
+        if (fraction > 0.3 && fraction <= 0.4) {
+            const factor = (fraction - 0.3) / 0.1;
+            text2.style.opacity = factor;
+            text2.style.transform = `translateY(${(1 - factor) * 25}px)`;
+            text2.style.pointerEvents = 'none';
+        } else if (fraction > 0.4 && fraction <= 0.55) {
+            text2.style.opacity = 1;
+            text2.style.transform = 'translateY(0)';
+            text2.style.pointerEvents = 'auto';
+        } else if (fraction > 0.55 && fraction <= 0.65) {
+            const factor = (0.65 - fraction) / 0.1;
+            text2.style.opacity = factor;
+            text2.style.transform = `translateY(${(1 - factor) * -25}px)`;
+            text2.style.pointerEvents = 'none';
+        } else {
+            text2.style.opacity = 0;
+            text2.style.pointerEvents = 'none';
+        }
+        
+        // Text 3: active 65% to 100%, fades in from 65% to 75%
+        if (fraction > 0.65 && fraction <= 0.75) {
+            const factor = (fraction - 0.65) / 0.1;
+            text3.style.opacity = factor;
+            text3.style.transform = `translateY(${(1 - factor) * 25}px)`;
+            text3.style.pointerEvents = 'none';
+        } else if (fraction > 0.75) {
+            text3.style.opacity = 1;
+            text3.style.transform = 'translateY(0)';
+            text3.style.pointerEvents = 'auto';
+        } else {
+            text3.style.opacity = 0;
+            text3.style.pointerEvents = 'none';
+        }
+    }
+
+    // Smooth playback animation loop (lerping)
+    function loop() {
+        // Interpolate the scroll fraction
+        currentScrollFraction += (targetScrollFraction - currentScrollFraction) * damping;
+        currentScrollFraction = Math.max(0, Math.min(1, currentScrollFraction));
+        
+        // Update frame drawing based on current scroll fraction
+        if (imagesPreloaded) {
+            const targetIndex = currentScrollFraction * (totalFrames - 1);
+            drawFrame(targetIndex);
+        }
+        
+        // Update overlays
+        updateTextOverlays(currentScrollFraction);
+        
+        requestAnimationFrame(loop);
+    }
+
+    // Initialize
+    resizeCanvas();
+    preloadImages();
+    updateNavbar();
+    loop();
+</script>
+</body></html>
